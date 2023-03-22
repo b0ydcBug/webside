@@ -1,0 +1,4 @@
+flags
+
+' / simbolo comun para testear si existe el SQLi o no.
+" / simbolo comun para testear si existe el SQLi o no.
