@@ -55,10 +55,12 @@ al final para que funcione.
 
 # Examining the database in SQL injection attacks
 
-existen distintos motores de bases de datos, los mas comunes son: Microsoft, MySQL, Oracle y PostgreSQL. cada uno tiene su manera de mostrar la informacion
+existen distintos motores de bases de datos, los mas comunes son: Microsoft, MySQL, Oracle y PostgreSQL. cada uno tiene su manera de mostrar la informacion,
+para mostrar la informacion es necesario hacer uso del [UNION] flag.
 
 Microsoft : SELECT @@version
 MySQL : SELECT @@version
 Oracle : SELECT * FROM v$version
 PostgreSQL : SELECT version()
 
+' UNION SELECT @@version--
