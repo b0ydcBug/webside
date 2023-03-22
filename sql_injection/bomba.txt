@@ -52,3 +52,13 @@ que se llama DUAL, esa tabla puede ser usada para aplicar este metodo. por ultim
 al final para que funcione.
 
 ' UNION SELECT NULL FROM DUAL--
+
+# Examining the database in SQL injection attacks
+
+existen distintos motores de bases de datos, los mas comunes son: Microsoft, MySQL, Oracle y PostgreSQL. cada uno tiene su manera de mostrar la informacion
+
+Microsoft : SELECT @@version
+MySQL : SELECT @@version
+Oracle : SELECT * FROM v$version
+PostgreSQL : SELECT version()
+
