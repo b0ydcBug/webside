@@ -44,6 +44,9 @@ si hay columna o no con un NULL request. con el primer NULL definiria si existe 
 agregar [,] y se agregan la cantidad de NULL requests hasta mostrar el error, o no mostrar nada. tambien podria ser un resultado esperado para este
 tipo de consultas.
 
+ex:https://portswigger.net/web-security/sql-injection/union-attacks/lab-determine-number-of-columns
+https://0a480082030be0d7c91cf44e00b30018.web-security-academy.net/filter?category=Gifts%27%20UNION%20select%20NULL,NULL,NULL--
+
 NOTA: para ORACLE, es necesario utilizar dentro de la sintaxis de la consulta el FROM flag y especificar la tabla. por default ORACLE tiene una tabla
 que se llama DUAL, esa tabla puede ser usada para aplicar este metodo. por ultimo, cuando se utiliza el flag de comentar [--], es necesario un espacio 
 al final para que funcione.
