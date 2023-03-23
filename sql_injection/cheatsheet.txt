@@ -27,3 +27,22 @@ Microsoft : SELECT @@version
 MySQL : SELECT @@version
 Oracle : SELECT * FROM v$version
 PostgreSQL : SELECT version()
+
+
+###> UNION ATTACK
+
+[necesario saber antes de]
+1. saber el numero de columnas
+2. saber el tipo de data por columna
+
+_COMO SABER EL NUMERO DE COLUMNAS ?
+
+metodo1: ' UNION SELECT NULL--
+este metodo es similar al pasado, se trata de inyectar el payload de ejemplo con un consecutivo pero en este caso lo que trata es de validar si hay columna o no con un NULL request. con el primer NULL definiria si existe una columna, para seguir el consecutivo solamente debe de agregar [,] y se agregan la cantidad de NULL requests hasta mostrar el error, o no mostrar nada. tambien podria ser un resultado esperado para este tipo de consultas.
+
+metodo2: ' ORDER BY 1--
+este metodo funciona inyectando una serie de flags [' ORDER BY 1--] con un consecutivo de manera que el numero incremental va a definir la cantidad de columnas una vez se obtenga un error en la consulta, o bien ningun resultado. el ultimo numero consecutivo define la cantidad de columnas. las columnas pueden ser manejadas por medio del index number, no hace falta saber el nombre de la columna ya que lo que se necesita es saber la
+cantidad de columnas.
+
+
+
