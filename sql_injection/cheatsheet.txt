@@ -1,4 +1,17 @@
 flags
 
+# I D E N T I F I C A R L A V U L N E R A B I L I D A D
+
 ' / simbolo comun para testear si existe el SQLi o no.
 " / simbolo comun para testear si existe el SQLi o no.
+-- / dentro del lenguaje de SQL query, sirve para comentar de manera que todo lo que este despues de los simbolos, se ignora.
+' OR 1=1-- / dentro del lenguaje de SQL query, lo que busca es crear una condicion donde sea "true" y la primera consulta muestre
+el contenido de la busqueda.
+
+
+# I D E N T I F I C A R I N F O R M A C I O N D E L M O T O R D E B A S E D E D A T O S
+
+Microsoft : SELECT @@version
+MySQL : SELECT @@version
+Oracle : SELECT * FROM v$version
+PostgreSQL : SELECT version()
